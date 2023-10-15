@@ -1,1 +1,18 @@
-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdDUlgyLXRYalB6LWVmUzlQX19CMCJ9.eyJpc3MiOiJodHRwczovL2Rldi1pNG1wZ294N2VrbGF6dDcwLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJ3TExvYUNlTUFWM0VmYm9UVEREckVFekVZd3RpaUdoS0BjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9mYXN0YXBpLXRyYXZlbC1jb21wYW55LmNvbSIsImlhdCI6MTY5NjcxMTU1MSwiZXhwIjoxNjk2Nzk3OTUxLCJhenAiOiJ3TExvYUNlTUFWM0VmYm9UVEREckVFekVZd3RpaUdoSyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.t_VNs9ZkgsEkhKrS5s1W8qrDk8uR-KG8uZ_gsb2LRhUFq4loOELi5w64pMv5qlEgKEalYMKAzlR8I29w_oekX5D6NcDG90rI54KDmBsjsVs5RhEVbR6Wwi9KLd1iHd9t-qRFtlniNvwwHBHQ5kQydGEg5ynPNkcnFU_xvLIvpxR7aiZk8Y7FHcwSCwPvUG1xLS8qJL1_QrZWPVgTM9UiH5st3jhc11Yhx82nvC_vw-abbibd57bcOV-mUACAyl8irl__r-qoAg7wymKuDyQ_1JUW-3oCFUnCfK9DryJ4CARWjnFiPJtrgqzg6L2Ci3qWYeW9UBlYNnmbhE0InUPLZg
+annotated-types        0.6.0
+anyio                  3.7.1
+cffi                   1.16.0
+cryptography           41.0.4
+fastapi                0.103.2
+idna                   3.4
+jwt                    1.3.1
+mysql-connector        2.2.9
+mysql-connector-python 8.1.0
+pip                    23.2.1
+protobuf               4.21.12
+pycparser              2.21
+pydantic               2.4.2
+pydantic_core          2.10.1
+pyodbc                 5.0.0
+sniffio                1.3.0
+starlette              0.27.0
+typing_extensions      4.8.0
