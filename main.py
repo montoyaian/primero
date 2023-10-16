@@ -15,7 +15,6 @@ from controller.db_controller_bookings import DatabaseControllerBokings
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from Security.SSO import *
 
 app = FastAPI()
 bd_object_flights = DatabaseControllerFlight() 
