@@ -8,32 +8,25 @@ DELETE_SUCCESS = {"message": "eliminacion completa"}
 
 
 
-
+connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+cursor = connection.cursor()
 class DatabaseControllerFlight():
     """
     This class is used to connect to the database and execute queries
     """
 
-    def __init__(self):
-        """
-        Constructor
-        """
-        
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-        self.cursor = self.connection.cursor()
-
     def insert_flight(self, flight: Firtsclass or Economiclass or Standartclass):
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-        self.cursor = self.connection.cursor()
-        self.cursor.execute(
-        """SELECT * FROM data_base.supplier WHERE id = %s""",
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
+        cursor.execute(
+        """SELECT * FROM bawcgrp6dvncdrpjz2lu.supplier WHERE id = %s""",
         (flight.id_agency,),
         )
-        result = self.cursor.fetchone()
+        result = cursor.fetchone()
         if result:
             if flight.positions > 0:
                 if isinstance(flight, Firtsclass):
-                    self.cursor.execute(      """INSERT INTO  data_base.firts_class(
+                    cursor.execute(      """INSERT INTO  bawcgrp6dvncdrpjz2lu.firts_class(
                 Origin,
                 Destination,
                 Date,
@@ -51,8 +44,8 @@ class DatabaseControllerFlight():
                 flight.id_agency,
                 flight.premium_cost,
                 ))
-                    self.connection.commit()
-                    self.connection.close()
+                    connection.commit()
+                    connection.close()
                     flightj = {
                     "origin": flight.origin,
                     "destination": flight.destination,
@@ -66,7 +59,7 @@ class DatabaseControllerFlight():
 
             
                 elif isinstance(flight, Standartclass):
-                    self.cursor.execute(      """INSERT INTO  data_base.standart_class(
+                    cursor.execute(      """INSERT INTO  bawcgrp6dvncdrpjz2lu.standart_class(
                     Origin,
                     Destination,
                     Date,
@@ -84,8 +77,8 @@ class DatabaseControllerFlight():
                     flight.id_agency,
                     flight.standart_cost,
                     ))
-                    self.connection.commit()
-                    self.connection.close()
+                    connection.commit()
+                    connection.close()
                     flightj = {
                     "origin": flight.origin,
                     "destination": flight.destination,
@@ -103,10 +96,10 @@ class DatabaseControllerFlight():
    
     def insert_supplier(self, supplier:Supplier ):
     
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
 
-        self.cursor = self.connection.cursor()
-        self.cursor.execute("""INSERT INTO  data_base.supplier(
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO  bawcgrp6dvncdrpjz2lu.supplier(
         Name,
         Contact,
         Description
@@ -116,8 +109,8 @@ class DatabaseControllerFlight():
         supplier.contact,
         supplier.description,
         ))
-        self.connection.commit()
-        self.connection.close()
+        connection.commit()
+        connection.close()
         supplierj = {
         "name": supplier.name,
         "contact": supplier.contact,
@@ -130,15 +123,15 @@ class DatabaseControllerFlight():
      
     def edit_supplier(self,supplier:Supplier ):
     
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-        self.cursor = self.connection.cursor()
-        self.cursor.execute("""SELECT * FROM data_base.supplier WHERE ID = %s""", (supplier.id,))
-        result = self.cursor.fetchone()
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
+        cursor.execute("""SELECT * FROM bawcgrp6dvncdrpjz2lu.supplier WHERE ID = %s""", (supplier.id,))
+        result = cursor.fetchone()
 
         if not result :
             return {"error":"proveedor no encontrado"}
 
-        self.cursor.execute("""UPDATE data_base.supplier SET 
+        cursor.execute("""UPDATE bawcgrp6dvncdrpjz2lu.supplier SET 
         Name = %s,
         Contact = %s,
         Description = %s
@@ -149,8 +142,8 @@ class DatabaseControllerFlight():
         supplier.description,
         supplier.id,
         ))
-        self.connection.commit()
-        self.connection.close()
+        connection.commit()
+        connection.close()
         supplierj = {
         "id": supplier.id,
         "name": supplier.name,
@@ -160,24 +153,23 @@ class DatabaseControllerFlight():
         return supplierj
 
     def edit_flight(self, flight:Standartclass or Firtsclass):
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-
-        self.cursor = self.connection.cursor()
-        self.cursor.execute(
-        """SELECT * FROM data_base.supplier WHERE id = %s""",
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
+        cursor.execute(
+        """SELECT * FROM bawcgrp6dvncdrpjz2lu.supplier WHERE id = %s""",
         (flight.id_agency,),
         )
-        result = self.cursor.fetchone()
+        result = cursor.fetchone()
         if result:
             if isinstance(flight, Standartclass):
-                self.cursor.execute(
-                """SELECT * FROM data_base.standart_class WHERE id = %s""",
+                cursor.execute(
+                """SELECT * FROM bawcgrp6dvncdrpjz2lu.standart_class WHERE id = %s""",
                 (flight.id,),
             )
-                result = self.cursor.fetchone()
+                result = cursor.fetchone()
                 if result:
-                    self.cursor.execute(
-                        """UPDATE data_base.standart_class SET
+                    cursor.execute(
+                        """UPDATE bawcgrp6dvncdrpjz2lu.standart_class SET
                         Origin=%s,
                         Destination=%s,
                         Date=strftime('%Y-%m-%d', %s),
@@ -197,12 +189,12 @@ class DatabaseControllerFlight():
                             flight.id,
                         ),
                     )
-                    self.connection.commit()
-                    self.cursor.execute(
-                    """SELECT * FROM data_base.standart_class WHERE id = %s""",
+                    connection.commit()
+                    cursor.execute(
+                    """SELECT * FROM bawcgrp6dvncdrpjz2lu.standart_class WHERE id = %s""",
                     (flight.id,),
                     )
-                    updated_flight = self.cursor.fetchone()
+                    updated_flight = cursor.fetchone()
 
                     updated_flight_dict = {
                         "id": updated_flight[0], 
@@ -214,20 +206,20 @@ class DatabaseControllerFlight():
                         "id_agency": updated_flight[6],
                         "standart_cost": updated_flight[7]
                     }
-                    self.connection.close()
+                    connection.close()
                     return updated_flight_dict
                 else:
                     return{"error": "vuelo no encontrado"}
            
             elif isinstance(flight, Firtsclass):
-                self.cursor.execute(
-                """SELECT * FROM data_base.firts_class WHERE id = %s""",
+                cursor.execute(
+                """SELECT * FROM bawcgrp6dvncdrpjz2lu.firts_class WHERE id = %s""",
                 (flight.id,),
                 )
-                result = self.cursor.fetchone()
+                result = cursor.fetchone()
                 if result:
-                    self.cursor.execute(
-                        """UPDATE data_base.firts_class SET
+                    cursor.execute(
+                        """UPDATE bawcgrp6dvncdrpjz2lu.firts_class SET
                         Origin=%s,
                         Destination=%s,
                         Date=strftime('%Y-%m-%d', %s),
@@ -247,12 +239,12 @@ class DatabaseControllerFlight():
                             flight.id,
                         ),
                     )
-                    self.connection.commit()
-                    self.cursor.execute(
-                    """SELECT * FROM data_base.firts_class WHERE id = %s""",
+                    connection.commit()
+                    cursor.execute(
+                    """SELECT * FROM bawcgrp6dvncdrpjz2lu.firts_class WHERE id = %s""",
                     (flight.id,),
                     )
-                    updated_flight = self.cursor.fetchone()
+                    updated_flight = cursor.fetchone()
 
                     updated_flight_dict = {
                         "id": updated_flight[0],  
@@ -264,7 +256,7 @@ class DatabaseControllerFlight():
                         "id_agency": updated_flight[6],
                         "premium_cost": updated_flight[7]
                     }
-                    self.connection.close()
+                    connection.close()
                     return updated_flight_dict
 
             else:
@@ -276,37 +268,36 @@ class DatabaseControllerFlight():
         """
         Delete a flight from database
         """
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-
-        self.cursor = self.connection.cursor()
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
         class_type.lower()
         if (class_type == "firts class"):
-            self.cursor.execute(
-            """SELECT * FROM data_base.firts_class WHERE id = %s""",
+            cursor.execute(
+            """SELECT * FROM bawcgrp6dvncdrpjz2lu.firts_class WHERE id = %s""",
             (id,),
             )
-            result = self.cursor.fetchone()
+            result = cursor.fetchone()
             if result:
-                self.cursor.execute("""DELETE FROM data_base.firts_class WHERE id = %s""", (id,))
-                self.cursor.execute("""DELETE FROM data_base.Bookings WHERE Id_flight= %s AND Type_flight = 'firts class'""", (id,))
-                self.cursor.execute("""DELETE FROM data_base.Offers WHERE Id_flight = %s""", (id,))
-                self.connection.commit()
-                self.connection.close()
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.firts_class WHERE id = %s""", (id,))
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.Bookings WHERE Id_flight= %s AND Type_flight = 'firts class'""", (id,))
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.Offers WHERE Id_flight = %s""", (id,))
+                connection.commit()
+                connection.close()
                 return DELETE_SUCCESS
             else:
                 return{"error": "vuelo no encontrado"}            
         elif (class_type == "standart class"):
-            self.cursor.execute(
-            """SELECT * FROM data_base.firts_class WHERE id = %s""",
+            cursor.execute(
+            """SELECT * FROM bawcgrp6dvncdrpjz2lu.firts_class WHERE id = %s""",
             (id,),
             )
-            result = self.cursor.fetchone()
+            result = cursor.fetchone()
             if result:
-                self.cursor.execute("""DELETE FROM data_base.standart_class WHERE id = %s""", (id,))
-                self.cursor.execute("""DELETE FROM data_base.Bookings WHERE Id_flight= %s AND Type_flight = 'standart class'""", (id,))
-                self.cursor.execute("""DELETE FROM data_base.Offers WHERE Id_flight = %s""", (id,))
-                self.connection.commit()
-                self.connection.close()
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.standart_class WHERE id = %s""", (id,))
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.Bookings WHERE Id_flight= %s AND Type_flight = 'standart class'""", (id,))
+                cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.Offers WHERE Id_flight = %s""", (id,))
+                connection.commit()
+                connection.close()
                 return DELETE_SUCCESS
             else:
                 {"error": "vuelo no encontrado"} 
@@ -317,52 +308,50 @@ class DatabaseControllerFlight():
         """
         Delete a supplier from database
         """
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-
-        self.cursor = self.connection.cursor()
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
         
-        self.cursor.execute(
-        """SELECT * FROM data_base.supplier WHERE id = %s""",
+        cursor.execute(
+        """SELECT * FROM bawcgrp6dvncdrpjz2lu.supplier WHERE id = %s""",
         (id,),
         )
-        result = self.cursor.fetchone()
+        result = cursor.fetchone()
         if result:
-            self.cursor.execute("""DELETE FROM data_base.supplier  WHERE id = %s""", (id,))      
-            self.cursor.execute("""DELETE FROM data_base.firts_class  WHERE ID_agency = %s""", (id,))
-            self.cursor.execute("""DELETE FROM data_base.standart_class  WHERE ID_agency = %s""", (id,))
-            self.connection.commit()
-            self.connection.close()          
+            cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.supplier  WHERE id = %s""", (id,))      
+            cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.firts_class  WHERE ID_agency = %s""", (id,))
+            cursor.execute("""DELETE FROM bawcgrp6dvncdrpjz2lu.standart_class  WHERE ID_agency = %s""", (id,))
+            connection.commit()
+            connection.close()          
             return DELETE_SUCCESS
         else:
             return {"error":"proveedor no encontrado"}        
             
     def show_flight(self, table_name:str ):
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-
-        self.cursor = self.connection.cursor()
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
         try:
             if table_name == "all":
-                self.cursor.execute('SELECT * FROM data_base.firts_class')
-                rows = self.cursor.fetchall()
-                self.cursor.execute('SELECT * FROM data_base.standart_class')
-                rows += self.cursor.fetchall()
-                self.connection.commit()
-                self.connection.close()
+                cursor.execute('SELECT * FROM bawcgrp6dvncdrpjz2lu.firts_class')
+                rows = cursor.fetchall()
+                cursor.execute('SELECT * FROM bawcgrp6dvncdrpjz2lu.standart_class')
+                rows += cursor.fetchall()
+                connection.commit()
+                connection.close()
                 return rows 
             else:
-                self.cursor.execute(
-                    '''SELECT * FROM data_base.{}'''.format(table_name))
-                rows = self.cursor.fetchall()
-                self.connection.commit()
-                self.connection.close()
+                cursor.execute(
+                    '''SELECT * FROM bawcgrp6dvncdrpjz2lu.{}'''.format(table_name))
+                rows = cursor.fetchall()
+                connection.commit()
+                connection.close()
                 return rows
         except:
             return{"error":"tabla no valida"}
 
     def show_supplier(self):
-        self.connection = mysql.connector.connect(user='ian',password='ian1234',host='localhost',database='data_base',port='3306')
-        self.cursor = self.connection.cursor()
-        self.cursor.execute('SELECT * FROM data_base.supplier')
-        rows = self.cursor.fetchall()      
+        connection = mysql.connector.connect(user='uluf7v2ee4qsnl5t',password='t9oXzVw4GBxRQm0VgWGm',host='bawcgrp6dvncdrpjz2lu-mysql.services.clever-cloud.com',database='bawcgrp6dvncdrpjz2lu',port='3306')
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM bawcgrp6dvncdrpjz2lu.supplier')
+        rows = cursor.fetchall()      
         return rows 
     
